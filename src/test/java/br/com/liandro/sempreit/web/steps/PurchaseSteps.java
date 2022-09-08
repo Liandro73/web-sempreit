@@ -28,7 +28,7 @@ public class PurchaseSteps extends BaseSteps {
     @Dado("que eu esteja na tela de Login {string} {string}")
     public void queEuEstejaNaTelaDeLogin(String portal, String url) {
         step = "Dado que eu esteja na tela de Login";
-        loginPageObject.goToURL(url);
+        driver.get(url);
         loginPageObject.waitURL(url);
         loginPageObject.checkTitlePage(portal);
         loginPageObject.checkVisibilityOfLogoPageLogin();
@@ -55,12 +55,13 @@ public class PurchaseSteps extends BaseSteps {
         step = "Quando adicionar um produto ao carrinho";
         productPageObject.checkVisibilityAndClickOnProduct(scenario, step);
         productPageObject.clickOnButtonAddToCart();
-
     }
 
     @Quando("ir para o carrinho")
     public void irParaOCarrinho() {
+        step = "Quando ir para o carrinho";
         productPageObject.clickOnButtonCart();
+        productPageObject.takeScreenshot(scenario, step);
     }
 
     @Quando("clicar em Checkout")
@@ -77,7 +78,6 @@ public class PurchaseSteps extends BaseSteps {
         cartPageObject.fillInputLastName(lastName);
         cartPageObject.fillInputPostalCode(postalCode);
         cartPageObject.takeScreenshot(scenario, step);
-
     }
 
     @Quando("clicar em Continue")
